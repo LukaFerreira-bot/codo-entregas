@@ -576,7 +576,7 @@
           >&nbsp;Entregas Codó
         </div>
         <div class="who">
-          Olá, <strong id="who-name">—</strong
+          Olá,<strong id="who-name">—</strong
           ><button class="btn-ghost" onclick="sair()">Sair</button>
         </div>
       </div>
@@ -791,7 +791,8 @@
         const user = document.getElementById("login-user").value.trim();
         const pass = document.getElementById("login-pass").value.trim();
         const erro = document.getElementById("login-error");
-        if (!user || !pass) {
+        // Protótipo: esta em fase de testes então deixar vazio para facilitar o acesso.
+        if (user || pass) {
           erro.textContent = "Preencha e-mail/nome e senha para continuar.";
           return;
         }

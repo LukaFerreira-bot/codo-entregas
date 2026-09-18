@@ -340,6 +340,38 @@
       }
 
       /* Dashboard panel */
+      .panel-dashboard {
+        position: relative;
+      }
+      .btn-add-corner {
+        position: absolute;
+        top: 26px;
+        right: 26px;
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--navy);
+        font-size: 1.3rem;
+        font-weight: 700;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background 0.15s ease,
+          transform 0.1s ease;
+      }
+      .btn-add-corner:hover {
+        background: var(--teal);
+        color: #fff;
+        border-color: var(--teal);
+      }
+      .btn-add-corner:active {
+        transform: scale(0.94);
+      }
       .dash-head {
         display: flex;
         align-items: flex-start;
@@ -347,6 +379,7 @@
         gap: 20px;
         margin-bottom: 22px;
         flex-wrap: wrap;
+        padding-right: 48px;
       }
       .filter-tabs {
         display: flex;
@@ -470,6 +503,15 @@
         border-bottom: 1px solid var(--line);
         font-size: 0.84rem;
         gap: 10px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: background 0.12s ease;
+      }
+      .history-row:hover {
+        background: #f4f7f6;
+        padding-left: 8px;
+        padding-right: 8px;
+        margin: 0 -8px;
       }
       .history-row .cliente {
         font-weight: 600;
@@ -488,11 +530,225 @@
         color: var(--teal);
         font-weight: 700;
       }
+      .history-hint {
+        font-size: 0.74rem;
+        color: #9aa6ac;
+        margin: 8px 0 0;
+      }
       .empty-state {
         text-align: center;
         padding: 26px 10px;
         color: #8a97a0;
         font-size: 0.83rem;
+      }
+
+      /* ===================== MODAL ===================== */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(18, 35, 43, 0.5);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        z-index: 50;
+      }
+      .modal-overlay.show {
+        display: flex;
+      }
+      .modal-box {
+        background: #fff;
+        border-radius: 16px;
+        padding: 26px;
+        width: 100%;
+        max-width: 380px;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .modal-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 6px;
+      }
+      .modal-head h3 {
+        font-size: 1.1rem;
+        margin: 0;
+        font-weight: 700;
+      }
+      .modal-close {
+        background: none;
+        border: none;
+        font-size: 1.3rem;
+        line-height: 1;
+        color: #8a97a0;
+        cursor: pointer;
+        padding: 2px 6px;
+      }
+      .modal-sub {
+        font-size: 0.8rem;
+        color: #6b7a82;
+        margin: 0 0 20px;
+      }
+      .modal-hint {
+        font-size: 0.76rem;
+        color: #6b7a82;
+        margin: -10px 0 16px;
+      }
+      .modal-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 4px;
+      }
+      .modal-actions .btn-confirm {
+        margin-top: 0;
+      }
+      .btn-delete {
+        flex: 0 0 auto;
+        background: #fbeae5;
+        color: var(--coral);
+        border: 1px solid #f4d3c6;
+        padding: 13px 16px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        font-family: inherit;
+        cursor: pointer;
+      }
+      #modal-error {
+        color: var(--coral);
+        font-size: 0.78rem;
+        margin: -8px 0 12px;
+        min-height: 1em;
+      }
+
+      /* ---- Calendário customizado para escolha de data ---- */
+      .date-field-wrap {
+        position: relative;
+      }
+      button.field-light.date-display-btn {
+        width: 100%;
+        padding: 12px 13px;
+        border-radius: 10px;
+        border: 1px solid #d8dedc;
+        background: #fff;
+        font-family: inherit;
+        font-size: 0.9rem;
+        color: var(--ink);
+      }
+      .date-display-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        text-align: left;
+      }
+      .date-display-btn:hover,
+      .date-display-btn:focus {
+        outline: 2px solid var(--teal);
+        outline-offset: 1px;
+        border-color: var(--teal);
+      }
+      .date-display-btn .cal-icon {
+        font-size: 1rem;
+        margin-left: 8px;
+      }
+      .calendar-panel {
+        display: none;
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        z-index: 60;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        box-shadow: 0 10px 28px rgba(18, 51, 71, 0.2);
+        padding: 14px;
+        width: 268px;
+      }
+      .calendar-panel.show {
+        display: block;
+      }
+      .cal-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .cal-nav-btn {
+        background: none;
+        border: none;
+        font-size: 1.05rem;
+        cursor: pointer;
+        color: var(--navy);
+        width: 28px;
+        height: 28px;
+        border-radius: 7px;
+        font-family: inherit;
+      }
+      .cal-nav-btn:hover {
+        background: #eef2f1;
+      }
+      .cal-month-label {
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: capitalize;
+      }
+      .cal-weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        text-align: center;
+        font-size: 0.66rem;
+        font-weight: 700;
+        color: #9aa6ac;
+        margin-bottom: 4px;
+      }
+      .cal-days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 2px;
+      }
+      .cal-day {
+        text-align: center;
+        padding: 7px 0;
+        font-size: 0.78rem;
+        border-radius: 8px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        font-family: inherit;
+        color: var(--ink);
+      }
+      .cal-day:hover {
+        background: #eef2f1;
+      }
+      .cal-day.other-month {
+        color: #cbd3d5;
+      }
+      .cal-day.today {
+        box-shadow: inset 0 0 0 1px var(--teal);
+        font-weight: 700;
+      }
+      .cal-day.selected {
+        background: var(--teal);
+        color: #fff;
+        font-weight: 700;
+      }
+      .cal-today-btn {
+        margin-top: 10px;
+        width: 100%;
+        background: #eef2f1;
+        border: none;
+        padding: 8px;
+        border-radius: 8px;
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: var(--navy);
+        font-family: inherit;
+        cursor: pointer;
+      }
+      .cal-today-btn:hover {
+        background: #e0e7e5;
       }
 
       @media (max-width: 900px) {
@@ -632,7 +888,15 @@
         </div>
 
         <!-- Painel -->
-        <div class="panel">
+        <div class="panel panel-dashboard">
+          <button
+            class="btn-add-corner"
+            id="btn-add-corner"
+            title="Adicionar ou corrigir entrega de outra data"
+            onclick="abrirModalNovo()"
+          >
+            +
+          </button>
           <div class="dash-head">
             <div>
               <h2>Painel de entregas</h2>
@@ -721,6 +985,117 @@
 
           <div class="history-title">Últimos registros</div>
           <div id="history-list"></div>
+          <p class="history-hint" id="history-hint" style="display: none">
+            Toque em um registro para corrigir ou excluir.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== MODAL: ADICIONAR / CORRIGIR ENTREGA ===================== -->
+    <div class="modal-overlay" id="modal-overlay">
+      <div class="modal-box">
+        <div class="modal-head">
+          <h3 id="modal-title">Adicionar entrega</h3>
+          <button class="modal-close" onclick="fecharModal()">×</button>
+        </div>
+        <p class="modal-sub" id="modal-sub">
+          Lance uma entrega de um dia anterior ou corrija um registro existente.
+        </p>
+
+        <div class="field-group">
+          <label class="field-label" for="modal-data-display">Data</label>
+          <div class="date-field-wrap">
+            <button
+              type="button"
+              class="field-light date-display-btn"
+              id="modal-data-display"
+              onclick="toggleCalendario()"
+            >
+              <span id="modal-data-texto">Selecione a data</span>
+              <span class="cal-icon">📅</span>
+            </button>
+            <div class="calendar-panel" id="calendar-panel">
+              <div class="cal-head">
+                <button
+                  type="button"
+                  class="cal-nav-btn"
+                  onclick="mudarMesCalendario(-1)"
+                >
+                  ‹
+                </button>
+                <span class="cal-month-label" id="cal-month-label"></span>
+                <button
+                  type="button"
+                  class="cal-nav-btn"
+                  onclick="mudarMesCalendario(1)"
+                >
+                  ›
+                </button>
+              </div>
+              <div class="cal-weekdays">
+                <span>D</span><span>S</span><span>T</span><span>Q</span
+                ><span>Q</span><span>S</span><span>S</span>
+              </div>
+              <div class="cal-days" id="cal-days"></div>
+              <button
+                type="button"
+                class="cal-today-btn"
+                onclick="irParaHojeCalendario()"
+              >
+                Hoje
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="modal-cliente">Cliente</label>
+          <input
+            class="field-light"
+            id="modal-cliente"
+            type="text"
+            placeholder="Ex: Maria Oliveira"
+          />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="modal-bairro">Bairro</label>
+          <select
+            class="field-light"
+            id="modal-bairro"
+            onchange="atualizarValorModal()"
+          >
+            <option value="">Selecione o bairro</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="modal-valor">Valor (R$)</label>
+          <input
+            class="field-light"
+            id="modal-valor"
+            type="number"
+            min="0"
+            step="1"
+          />
+        </div>
+        <p class="modal-hint">
+          O valor é preenchido pelo bairro, mas pode ser ajustado manualmente.
+        </p>
+
+        <p id="modal-error"></p>
+
+        <div class="modal-actions">
+          <button
+            class="btn-delete"
+            id="modal-delete-btn"
+            onclick="excluirEntregaModal()"
+            style="display: none"
+          >
+            Excluir
+          </button>
+          <button class="btn-confirm" onclick="salvarModal()">Salvar</button>
         </div>
       </div>
     </div>
@@ -759,8 +1134,8 @@
         return TAXA_5.includes(bairro) ? 5 : 7;
       }
 
-      function popularBairros() {
-        const select = document.getElementById("bairro");
+      function popularBairros(selectId) {
+        const select = document.getElementById(selectId);
         BAIRROS.forEach((b) => {
           const opt = document.createElement("option");
           opt.value = b;
@@ -768,7 +1143,8 @@
           select.appendChild(opt);
         });
       }
-      popularBairros();
+      popularBairros("bairro");
+      popularBairros("modal-bairro");
 
       function mostrarTaxaSelecionada() {
         const bairro = document.getElementById("bairro").value;
@@ -782,9 +1158,14 @@
 
       // ---------- Estado em memória (sem localStorage: não suportado neste ambiente) ----------
       let usuario = null;
-      let entregas = []; // {data:'YYYY-MM-DD', cliente, bairro, valor}
+      let entregas = []; // {id, data:'YYYY-MM-DD', cliente, bairro, valor}
+      let proximoId = 1;
       let filtroAtivo = "dia";
       let grafico = null;
+      let editandoId = null; // null = modal em modo "adicionar"; id = modal em modo "editar"
+      let dataSelecionadaModal = null; // ISO 'YYYY-MM-DD' escolhida no calendário
+      let calMesAtual = 0;
+      let calAnoAtual = 0;
 
       // ---------- Login / navegação de página ----------
       function fazerLogin() {
@@ -811,7 +1192,7 @@
         document.getElementById("view-login").style.display = "flex";
       }
 
-      // ---------- Formulário ----------
+      // ---------- Formulário (entrega de hoje) ----------
       function confirmarEntrega() {
         const clienteInput = document.getElementById("cliente");
         const bairroSelect = document.getElementById("bairro");
@@ -831,7 +1212,13 @@
         const dataStr = hoje.toISOString().slice(0, 10);
         const valor = taxaDoBairro(bairro);
 
-        entregas.push({ data: dataStr, cliente, bairro, valor });
+        entregas.push({
+          id: proximoId++,
+          data: dataStr,
+          cliente,
+          bairro,
+          valor,
+        });
 
         clienteInput.value = "";
         bairroSelect.value = "";
@@ -844,6 +1231,251 @@
         const t = document.getElementById("toast-form");
         t.classList.add("show");
         setTimeout(() => t.classList.remove("show"), 1600);
+      }
+
+      // ---------- Modal: adicionar entrega de outro dia / corrigir registro ----------
+      function hojeISO() {
+        return new Date().toISOString().slice(0, 10);
+      }
+
+      function abrirModalNovo() {
+        editandoId = null;
+        document.getElementById("modal-title").textContent =
+          "Adicionar entrega";
+        document.getElementById("modal-sub").textContent =
+          "Lance uma entrega de um dia, semana ou mês anterior.";
+        abrirCalendarioEm(hojeISO());
+        document.getElementById("modal-cliente").value = "";
+        document.getElementById("modal-bairro").value = "";
+        document.getElementById("modal-valor").value = "";
+        document.getElementById("modal-delete-btn").style.display = "none";
+        document.getElementById("modal-error").textContent = "";
+        abrirModalOverlay();
+      }
+
+      function abrirModalEditar(id) {
+        const item = entregas.find((e) => e.id === id);
+        if (!item) return;
+        editandoId = id;
+        document.getElementById("modal-title").textContent = "Corrigir entrega";
+        document.getElementById("modal-sub").textContent =
+          "Ajuste os dados deste registro ou exclua-o.";
+        abrirCalendarioEm(item.data);
+        document.getElementById("modal-cliente").value = item.cliente;
+        document.getElementById("modal-bairro").value = item.bairro;
+        document.getElementById("modal-valor").value = item.valor;
+        document.getElementById("modal-delete-btn").style.display = "block";
+        document.getElementById("modal-error").textContent = "";
+        abrirModalOverlay();
+      }
+
+      function abrirModalOverlay() {
+        document.getElementById("modal-overlay").classList.add("show");
+      }
+
+      function fecharModal() {
+        document.getElementById("modal-overlay").classList.remove("show");
+        fecharCalendario();
+        editandoId = null;
+      }
+
+      // Fecha o modal ao clicar fora da caixa
+      document
+        .getElementById("modal-overlay")
+        .addEventListener("click", (ev) => {
+          if (ev.target.id === "modal-overlay") fecharModal();
+        });
+
+      // ---------- Calendário customizado ----------
+      function formatarDataLonga(iso) {
+        const d = new Date(iso + "T00:00:00");
+        return d.toLocaleDateString("pt-BR", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        });
+      }
+
+      function toggleCalendario() {
+        document.getElementById("calendar-panel").classList.toggle("show");
+      }
+
+      function fecharCalendario() {
+        document.getElementById("calendar-panel").classList.remove("show");
+      }
+
+      // Fecha o calendário ao clicar fora do campo de data (sem fechar o modal)
+      document.addEventListener("click", (ev) => {
+        const wrap = document.querySelector(".date-field-wrap");
+        if (wrap && !wrap.contains(ev.target)) fecharCalendario();
+      });
+
+      function abrirCalendarioEm(iso) {
+        const d = new Date(iso + "T00:00:00");
+        calAnoAtual = d.getFullYear();
+        calMesAtual = d.getMonth();
+        dataSelecionadaModal = iso;
+        document.getElementById("modal-data-texto").textContent =
+          formatarDataLonga(iso);
+        renderCalendario();
+        fecharCalendario();
+      }
+
+      function mudarMesCalendario(delta) {
+        calMesAtual += delta;
+        if (calMesAtual < 0) {
+          calMesAtual = 11;
+          calAnoAtual--;
+        }
+        if (calMesAtual > 11) {
+          calMesAtual = 0;
+          calAnoAtual++;
+        }
+        renderCalendario();
+      }
+
+      function irParaHojeCalendario() {
+        selecionarDiaCalendario(hojeISO());
+      }
+
+      function selecionarDiaCalendario(iso) {
+        dataSelecionadaModal = iso;
+        document.getElementById("modal-data-texto").textContent =
+          formatarDataLonga(iso);
+        const d = new Date(iso + "T00:00:00");
+        calAnoAtual = d.getFullYear();
+        calMesAtual = d.getMonth();
+        renderCalendario();
+        fecharCalendario();
+      }
+
+      function isoDeDiaMesAno(dia, mes, ano) {
+        let m = mes,
+          a = ano;
+        if (m < 0) {
+          m = 11;
+          a--;
+        }
+        if (m > 11) {
+          m = 0;
+          a++;
+        }
+        return `${a}-${String(m + 1).padStart(2, "0")}-${String(dia).padStart(2, "0")}`;
+      }
+
+      function criarBotaoDia(dia, mes, ano, outroMes) {
+        const iso = isoDeDiaMesAno(dia, mes, ano);
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "cal-day";
+        btn.textContent = dia;
+        if (outroMes) btn.classList.add("other-month");
+        if (iso === hojeISO()) btn.classList.add("today");
+        if (iso === dataSelecionadaModal) btn.classList.add("selected");
+        btn.onclick = (ev) => {
+          ev.stopPropagation();
+          selecionarDiaCalendario(iso);
+        };
+        return btn;
+      }
+
+      function renderCalendario() {
+        const primeiroDoMes = new Date(calAnoAtual, calMesAtual, 1);
+        document.getElementById("cal-month-label").textContent =
+          primeiroDoMes.toLocaleDateString("pt-BR", {
+            month: "long",
+            year: "numeric",
+          });
+
+        const diasWrap = document.getElementById("cal-days");
+        diasWrap.innerHTML = "";
+
+        const diaSemanaInicio = primeiroDoMes.getDay(); // 0 = domingo
+        const diasNoMes = new Date(calAnoAtual, calMesAtual + 1, 0).getDate();
+        const diasMesAnterior = new Date(calAnoAtual, calMesAtual, 0).getDate();
+
+        // dias do mês anterior, para completar a primeira semana
+        for (let i = diaSemanaInicio - 1; i >= 0; i--) {
+          const dia = diasMesAnterior - i;
+          diasWrap.appendChild(
+            criarBotaoDia(dia, calMesAtual - 1, calAnoAtual, true),
+          );
+        }
+        // dias do mês atual
+        for (let dia = 1; dia <= diasNoMes; dia++) {
+          diasWrap.appendChild(
+            criarBotaoDia(dia, calMesAtual, calAnoAtual, false),
+          );
+        }
+        // dias do próximo mês, para completar a última semana
+        const totalCelulas = diaSemanaInicio + diasNoMes;
+        const restante = (7 - (totalCelulas % 7)) % 7;
+        for (let dia = 1; dia <= restante; dia++) {
+          diasWrap.appendChild(
+            criarBotaoDia(dia, calMesAtual + 1, calAnoAtual, true),
+          );
+        }
+      }
+
+      function atualizarValorModal() {
+        const bairro = document.getElementById("modal-bairro").value;
+        if (bairro) {
+          document.getElementById("modal-valor").value = taxaDoBairro(bairro);
+        }
+      }
+
+      function salvarModal() {
+        const data = dataSelecionadaModal;
+        const cliente = document.getElementById("modal-cliente").value.trim();
+        const bairro = document.getElementById("modal-bairro").value;
+        const valorRaw = document.getElementById("modal-valor").value;
+        const erro = document.getElementById("modal-error");
+
+        if (!data) {
+          erro.textContent = "Escolha a data da entrega.";
+          return;
+        }
+        if (!cliente) {
+          erro.textContent = "Informe o nome do cliente.";
+          return;
+        }
+        if (!bairro) {
+          erro.textContent = "Escolha o bairro.";
+          return;
+        }
+        if (
+          valorRaw === "" ||
+          isNaN(Number(valorRaw)) ||
+          Number(valorRaw) < 0
+        ) {
+          erro.textContent = "Informe um valor válido.";
+          return;
+        }
+        erro.textContent = "";
+        const valor = Number(valorRaw);
+
+        if (editandoId !== null) {
+          const item = entregas.find((e) => e.id === editandoId);
+          if (item) {
+            item.data = data;
+            item.cliente = cliente;
+            item.bairro = bairro;
+            item.valor = valor;
+          }
+        } else {
+          entregas.push({ id: proximoId++, data, cliente, bairro, valor });
+        }
+
+        fecharModal();
+        atualizarDashboard();
+      }
+
+      function excluirEntregaModal() {
+        if (editandoId === null) return;
+        if (!confirm("Excluir este registro?")) return;
+        entregas = entregas.filter((e) => e.id !== editandoId);
+        fecharModal();
+        atualizarDashboard();
       }
 
       // ---------- Dashboard: agrupamento ----------
@@ -948,6 +1580,8 @@
         let labelAtual = "Período atual",
           notaTxt = "";
 
+        // Ordena por data para que dia/semana/mês "atual" seja sempre o mais recente,
+        // mesmo que uma entrega antiga tenha sido lançada depois pelo botão "+".
         if (filtroAtivo === "dia") {
           const grupos = agruparPorChave((d) => d);
           const chaves = Object.keys(grupos).sort();
@@ -969,7 +1603,10 @@
           medQtd = media(base, "quantidade");
           medValor = media(base, "valor");
 
-          labelAtual = `Hoje (${diaSemanaAtual})`;
+          labelAtual =
+            chaveAtual === hojeISO()
+              ? `Hoje (${diaSemanaAtual})`
+              : `${formatarDataCurta(chaveAtual)} (${diaSemanaAtual})`;
           notaTxt = mesmoDiaSemana.length
             ? `Comparado com a média de outras ${diaSemanaAtual}s registradas.`
             : "Comparado com a média dos demais dias registrados.";
@@ -989,7 +1626,10 @@
           medQtd = media(outras, "quantidade");
           medValor = media(outras, "valor");
 
-          labelAtual = "Semana atual";
+          labelAtual =
+            chaveAtual === getWeekKey(hojeISO())
+              ? "Semana atual"
+              : `Semana ${chaveAtual}`;
           notaTxt = outras.length
             ? "Comparado com a média das semanas anteriores."
             : "Ainda não há semanas anteriores para comparar.";
@@ -1014,7 +1654,10 @@
           medQtd = media(outras, "quantidade");
           medValor = media(outras, "valor");
 
-          labelAtual = "Mês atual";
+          labelAtual =
+            chaveAtual === getMonthKey(hojeISO())
+              ? "Mês atual"
+              : `Mês ${chaveAtual}`;
           notaTxt = outras.length
             ? "Comparado com a média dos meses anteriores."
             : "Ainda não há meses anteriores para comparar.";
@@ -1108,16 +1751,24 @@
 
       function renderHistorico() {
         const wrap = document.getElementById("history-list");
+        const hint = document.getElementById("history-hint");
         wrap.innerHTML = "";
         if (entregas.length === 0) {
           wrap.innerHTML =
             '<div class="empty-state">Nenhuma entrega registrada ainda.</div>';
+          hint.style.display = "none";
           return;
         }
-        const ultimos = [...entregas].slice(-8).reverse();
+        hint.style.display = "block";
+        const ultimos = [...entregas]
+          .sort((a, b) =>
+            a.data < b.data ? 1 : a.data > b.data ? -1 : b.id - a.id,
+          )
+          .slice(0, 8);
         ultimos.forEach((item) => {
           const row = document.createElement("div");
           row.className = "history-row";
+          row.onclick = () => abrirModalEditar(item.id);
           row.innerHTML = `
       <span>
         <div class="cliente">${item.cliente}</div>

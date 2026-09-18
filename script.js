@@ -24,7 +24,7 @@ const BAIRROS = [
   "São Pedro",
   "São Raimundo",
   "São Sebastião",
-  "São Vicente",
+  "São Vicente Palotti",
 ]; // já em ordem alfabética
 
 function taxaDoBairro(bairro) {
